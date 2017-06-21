@@ -9,6 +9,7 @@ default: help
 help:
 	@echo "build         - build the static site"
 	@echo "run           - run the site for dev"
+	@echo "run-static    - run a web server in the static site directory"
 	@echo "docker        - build the docker image"
 	@echo ""
 	@echo "clean         - remove all build, test, coverage and Python artifacts"
@@ -33,7 +34,10 @@ clean:
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -rf {} +
 
-run: $(BUILD_FILE)
+run: build
 	bin/run-site.sh
 
-.PHONY: docker build run clean rebuild
+run-static: build
+	cd _publish && python -m SimpleHTTPServer
+
+.PHONY: docker build run clean rebuild run-static

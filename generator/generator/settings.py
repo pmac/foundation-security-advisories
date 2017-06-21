@@ -2,6 +2,21 @@ import os
 
 from decouple import config
 
+STATIC_PAGE_URLS = [
+    '/',
+    '/advisories/',
+    '/bug-bounty/',
+    '/bug-bounty/faq-webapp/',
+    '/bug-bounty/faq/',
+    '/bug-bounty/hall-of-fame/',
+    '/bug-bounty/web-eligible-sites/',
+    '/bug-bounty/web-hall-of-fame/',
+    '/client-bug-bounty/',
+    '/known-vulnerabilities/',
+    '/known-vulnerabilities/older-vulnerabilities/',
+    '/web-bug-bounty/',
+]
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -73,7 +88,7 @@ USE_I18N = False
 USE_L10N = False
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
