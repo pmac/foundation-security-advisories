@@ -35,7 +35,7 @@ urlpatterns = (
     page('known-vulnerabilities/older-vulnerabilities', 'security/older-vulnerabilities.html'),
     url(r'^known-vulnerabilities/(?P<slug>[a-z-]+)/$',
         ProductView.as_view(), name='security.product-advisories'),
-    url(r'^known-vulnerabilities/(?P<product>[\w-]+)-(?P<version>\d{1,3}(\.\d{1,3})?)/$',
+    url(r'^known-vulnerabilities/(?P<product>[\w\s-]+)-(?P<version>[\d.]+)/$',
         ProductVersionView.as_view(), name='security.product-version-advisories'),
     url(r'^known-vulnerabilities/(?P<filename>.*)\.html$', KVRedirectsView.as_view()),
 

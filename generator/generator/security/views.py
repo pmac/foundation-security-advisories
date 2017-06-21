@@ -114,16 +114,21 @@ class ProductVersionView(ListView):
 
 
 class OldAdvisoriesView(RedirectView):
+    permanent = True
+
     def get_redirect_url(self, **kwargs):
         return reverse('security.advisory', kwargs=kwargs)
 
 
 class OldAdvisoriesListView(RedirectView):
+    permanent = True
+
     def get_redirect_url(self, **kwargs):
         return reverse('security.advisories')
 
 
 class KVRedirectsView(RedirectView):
+    permanent = True
     prod_ver_re = re.compile('(\w+)(\d{2})$')
 
     def get_redirect_url(self, *args, **kwargs):

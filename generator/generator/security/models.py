@@ -49,9 +49,8 @@ class Product(models.Model):
         return self.name_tuple < other.name_tuple
 
     def get_absolute_url(self):
-        product, vers = self.name_and_version
         return reverse('security.product-version-advisories',
-                       kwargs={'product': product, 'version': vers})
+                       kwargs={'product': self.product_slug, 'version': self.version})
 
     def save(self, force_insert=False, force_update=False,
              using=None, update_fields=None):

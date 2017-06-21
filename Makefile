@@ -7,7 +7,8 @@ default: help
 	@exit 1
 
 help:
-	@echo "build         - build the static site"
+	@echo "build         - build the static site using docker"
+	@echo "build-local   - build the static site using local environment"
 	@echo "run           - run the site for dev"
 	@echo "run-static    - run a web server in the static site directory"
 	@echo "docker        - build the docker image"
@@ -25,11 +26,15 @@ docker:
 build: $(BUILD_FILE)
 	bin/generate-site.sh
 
+build-local:
+	generator/bin/generate.sh
+
 rebuild: clean build
 
 clean:
 	-rm -f .docker-*
 	-rm -f generator/db.sqlite3
+	-rm -rf _publish
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -rf {} +
@@ -37,7 +42,7 @@ clean:
 run: build
 	bin/run-site.sh
 
-run-static: build
+run-static:
 	cd _publish && python -m SimpleHTTPServer
 
-.PHONY: docker build run clean rebuild run-static
+.PHONY: docker build run clean rebuild run-static build-local
