@@ -1,0 +1,39 @@
+GIT_COMMIT = $(shell git rev-parse HEAD)
+BUILD_FILE:=.docker-$(GIT_COMMIT)
+
+default: help
+	@echo ""
+	@echo "You need to specify a subcommand."
+	@exit 1
+
+help:
+	@echo "build         - build the static site"
+	@echo "run           - run the site for dev"
+	@echo "docker        - build the docker image"
+	@echo ""
+	@echo "clean         - remove all build, test, coverage and Python artifacts"
+	@echo "rebuild       - force a rebuild of all of the docker images and site"
+
+$(BUILD_FILE):
+	${MAKE} docker
+
+docker:
+	bin/build-docker-image.sh
+	touch $(BUILD_FILE)
+
+build: $(BUILD_FILE)
+	bin/generate-site.sh
+
+rebuild: clean build
+
+clean:
+	-rm -f .docker-*
+	-rm -f generator/db.sqlite3
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -rf {} +
+
+run: $(BUILD_FILE)
+	bin/run-site.sh
+
+.PHONY: docker build run clean rebuild

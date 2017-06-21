@@ -1,0 +1,32 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
+{% set body_id = "bug-bounty" %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">Bug Bounty Program</h1>
+    </header>
+    <div itemprop="articleBody">
+      <h2>Introduction</h2>
+
+      <p>The Mozilla Security Bug Bounty Program is designed to encourage
+        security research in Mozilla software and to reward those who help us create
+        the safest Internet clients in existence.</p>
+
+      <p>Many thanks to <a href="http://en.wikipedia.org/wiki/Linspire">Linspire</a>
+        and <a href="http://www.markshuttleworth.com/">Mark Shuttleworth</a>, who
+        provided start-up funding for this endeavor.</p>
+
+      <p>Mozilla has paid out over 1.6 million dollars in bounties to our various researchers!</p>
+
+      <p>Mozilla manages two different bug bounty programs.  One focuses on Firefox and other Mozilla applications and the other covers our websites and services.</p>
+
+      <ul>
+        <li><a href="{{ url('security.client-bug-bounty') }}">Client Bug Bounty Guidelines</a></li>
+        <li><a href="{{ url('security.web-bug-bounty') }}">Web Bug Bounty Guidelines</a></li>
+      </ul>
+     </div>
+  </article>
+{% endblock %}

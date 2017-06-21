@@ -1,0 +1,5 @@
+*.pyc
+*.pyo
+generator/db.sqlite3
+_publish
+.docker-*
